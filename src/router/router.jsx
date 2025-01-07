@@ -4,6 +4,9 @@ import Home from "../Pages/shared/Home/Home";
 import Login from "../Pages/shared/Authentication/Login";
 import Register from "../Pages/shared/Authentication/Register";
 import Service from "../Pages/shared/Service/Service";
+import AddService from "../Pages/AddService/AddService";
+import MyReviews from "../Pages/MyReviews/MyReviews";
+import Myservices from "../Pages/MyServices/Myservices";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
           path: "service",
           element: <Service></Service>
         },
+        {
+          path: "addService",
+          element: <AddService></AddService>
+        },
+        {
+          path: "myReviews",
+          element: <MyReviews></MyReviews>
+        },
+        {
+          path: "myServices",
+          element: <Myservices></Myservices>
+        }
       ]
     },
   ]);
