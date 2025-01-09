@@ -4,26 +4,38 @@
 // import Footer from './Footer';
 
 import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
 import { NavLink, Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import { Authcontext } from "../../context/AuthProvider";
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const {user, logOut} = useContext(Authcontext);
     const handleLogout = () => {
         logOut()
     }
     const links = <>
     <li className='font-semibold'><NavLink to={`/`}>Home</NavLink></li>
+    {!user?.email && (
+        <>
     <li className='font-semibold'><NavLink to={`/login`}>Login</NavLink></li>
     <li className='font-semibold'><NavLink to={`/registration`}>Registration</NavLink></li>
+        </>
+    )}
+    
     <li className='font-semibold'><NavLink to={`/service`}>Services</NavLink></li>
-    <li className='font-semibold'><NavLink to={`/addService`}>Add service</NavLink></li>
-    <li className='font-semibold'><NavLink to={`/myReviews`}>My reviews</NavLink></li>
-    <li className='font-semibold'><NavLink to={`/myServices`}>My services</NavLink></li>
+    {
+        user?.email && (
+            <>
+            <li className='font-semibold'><NavLink to={`/addService`}>Add service</NavLink></li>
+            <li className='font-semibold'><NavLink to={`/myReviews`}>My reviews</NavLink></li>
+            <li className='font-semibold'><NavLink to={`/myServices`}>My services</NavLink></li>
+            </>
+        )
+    }
+
     </>
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -47,7 +59,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Anime Zone</a>
+                    <img src="https://img.freepik.com/free-vector/user-with-magnifying-glass_78370-7010.jpg?semt=ais_hybrid" className="w-[40px] rounded-full" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -56,15 +68,14 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     { user?.email ? <div className='flex items-center justify-center gap-3 '>
-                        <p className='text-base hidden lg:block font-bold'>{user.displayName}</p>
                         <img className='w-[34px] h-[34px] rounded-full object-cover' src={user?.photoURL && user.photoURL} alt="profilePicture" />
                         <a onClick={handleLogout} className="btn">Logout</a>
                     
                     </div> :  <NavLink to="/login" className="btn">Login</NavLink> }
                 </div>
             </div>
-            <Outlet  className="flex-grow"></Outlet>
-            <Footer className="mt-auto"></Footer>
+            {/* <Outlet  className="flex-grow"></Outlet>
+            <Footer className="mt-auto"></Footer> */}
         </div>
     );
 };

@@ -1,9 +1,10 @@
-import React from 'react';
+import Features from "../../../Components/Features";
+
 
 const Home = () => {
     return (
-        <div>
-            <h2>This is home page</h2>
+        <div className=''>
+            <Features></Features>
         </div>
     );
 };
