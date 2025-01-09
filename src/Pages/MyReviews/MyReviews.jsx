@@ -7,12 +7,23 @@ const MyReview = () => {
 
     useEffect(() => {
         if (!user) {
-            return
+            return;
         }
         fetch(`http://localhost:5000/review?email=${user.email}`)
             .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
+            .then(data => setReviews(data));
+    }, [user]);
+
+    const handleDelete = (_id) => {
+        fetch(`http://localhost:5000/review/${_id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(() => {
+                // Remove the deleted review from the state
+                setReviews(reviews.filter(review => review._id !== _id));
+            });
+    };
 
     return (
         <div className="container mx-auto p-4">
@@ -35,7 +46,7 @@ const MyReview = () => {
                                 </div>
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-primary btn-sm">Edit</button>
-                                    <button className="btn btn-primary btn-sm">Delete</button>
+                                    <button onClick={() => handleDelete(review._id)} className="btn btn-primary btn-sm">Delete</button>
                                 </div>
                             </div>
                         </div>
