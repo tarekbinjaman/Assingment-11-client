@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Result } from 'postcss';
 import { Authcontext } from '../../../context/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const naviagte = useNavigate();
@@ -40,6 +41,9 @@ const Login = () => {
     }
     return (
         <div className='w-11/12 mx-auto flex flex-col items-center justify-center mt-24'>
+          <Helmet>
+            <title>Login</title>
+          </Helmet>
             <h2 className='text-2xl font-bold'>Login form</h2>
              <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl border-2 border-black mt-6">
       <form onSubmit={handleSubmit} className="card-body">
@@ -54,9 +58,6 @@ const Login = () => {
             <span className="label-text">Password</span>
           </label>
           <input type="password" placeholder="password" name='password' className="input input-bordered" required />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-          </label>
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">Don't have an account <Link to={`/registration`}><span>Registration now!</span></Link></a>
           </label>

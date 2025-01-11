@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Authcontext } from "../../../context/AuthProvider"; // Correct import
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet-async";
 
 const Registraion = () => {
   const {userRegister, setUser, updateUser, googleSignin}  = useContext(Authcontext);
@@ -56,6 +57,7 @@ const Registraion = () => {
     }
     return (
         <div className='w-11/12 mx-auto flex flex-col items-center justify-center mt-24'>
+          <Helmet><title>Register</title></Helmet>
             <h2 className='text-2xl font-bold'>Registration form</h2>
              <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl border-2 border-black mt-6">
       <form className="card-body" onSubmit={handleSubmit}>

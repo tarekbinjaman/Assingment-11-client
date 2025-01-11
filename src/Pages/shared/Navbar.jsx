@@ -60,6 +60,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <img src="https://img.freepik.com/free-vector/user-with-magnifying-glass_78370-7010.jpg?semt=ais_hybrid" className="w-[40px] rounded-full" alt="" />
+                    <h2>Job matcher</h2>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
