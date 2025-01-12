@@ -12,7 +12,7 @@ const Myservices = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/services?email=${user.email}`)
+            fetch(`https://server-side-cyan-beta.vercel.app/services?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setServices(data);

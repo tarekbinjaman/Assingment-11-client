@@ -8,7 +8,7 @@ const TotalCountUP = () => {
 
     useEffect(() => {
         // Fetch service data
-        fetch('http://localhost:5000/services')
+        fetch('https://server-side-cyan-beta.vercel.app/services')
             .then(response => response.json())
             .then(data => {
                 setServiceCount(data.length);
@@ -18,7 +18,7 @@ const TotalCountUP = () => {
             .catch(error => console.error('Error fetching services:', error));
 
         // Fetch review data
-        fetch('http://localhost:5000/review')
+        fetch('https://server-side-cyan-beta.vercel.app/review')
             .then(response => response.json())
             .then(data => {
                 setReviewCount(data.length);

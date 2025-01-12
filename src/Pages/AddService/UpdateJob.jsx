@@ -58,7 +58,7 @@ const UpdateJob = () => {
             const serviceData = { ...formData, userEmail };
 
             // Update service
-            fetch(`http://localhost:5000/services/${id}`, {
+            fetch(`https://server-side-cyan-beta.vercel.app/services/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(serviceData),
@@ -80,7 +80,7 @@ const UpdateJob = () => {
 
     // Use effect to fetch the data for the current service
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${id}`)
+        fetch(`https://server-side-cyan-beta.vercel.app/services/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setFormData({

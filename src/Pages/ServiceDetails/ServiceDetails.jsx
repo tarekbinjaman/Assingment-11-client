@@ -12,7 +12,7 @@ const ServiceDetails = () => {
     const [rating, setRating] = useState(0);
    
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://server-side-cyan-beta.vercel.app/review')
         .then(res => res.json())
         .then(serv => setReviews(serv))
     }, [])
@@ -34,7 +34,7 @@ const ServiceDetails = () => {
 
         // setReviews((prevReview) => [...prevReview, newReview]);
 
-        fetch('http://localhost:5000/review', {
+        fetch('https://server-side-cyan-beta.vercel.app/review', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(dat => {
-                console.log(dat);
-                fetch('http://localhost:5000/review')
+                // console.log(dat);
+                fetch('https://server-side-cyan-beta.vercel.app/review')
                 .then(res => res.json())
                 .then(serv => setReviews(serv))
             })

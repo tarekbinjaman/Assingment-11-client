@@ -6,11 +6,11 @@ import { Helmet } from 'react-helmet-async';
 const Service = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://server-side-cyan-beta.vercel.app/services')
         .then(res => res.json())
         .then(dat => {
             setData(dat)
-            console.log(dat)
+            // console.log(dat)
         })
     },[])
     return (

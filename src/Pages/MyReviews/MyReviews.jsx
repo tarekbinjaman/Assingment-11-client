@@ -14,11 +14,10 @@ const MyReview = () => {
 
     useEffect(() => {
         // if (!user) return;
-        // fetch(`http://localhost:5000/review?email=${user.email}`)
+        // fetch(`https://server-side-cyan-beta.vercel.app/review?email=${user.email}`)
         //     .then(res => res.json())
         //     .then(data => setReviews(data));
-        axios.get(`http://localhost:5000/review?email=${user.email}`,
-            {withCredentials: true})
+        axios.get(`https://server-side-cyan-beta.vercel.app/review?email=${user.email}`)
             .then(res => setReviews(res.data))
 
     }, [user]);
@@ -34,7 +33,7 @@ const MyReview = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/review/${_id}`, {
+                fetch(`https://server-side-cyan-beta.vercel.app/review/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -66,7 +65,7 @@ const MyReview = () => {
             rating: updatedRating
         };
 
-        fetch(`http://localhost:5000/review/${selectedReview._id}`, {
+        fetch(`https://server-side-cyan-beta.vercel.app/review/${selectedReview._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

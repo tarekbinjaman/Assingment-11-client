@@ -52,14 +52,14 @@ const AddService = () => {
             const userEmail = user.email;
             const serviceData = { ...formData, userEmail };
 
-            fetch(`http://localhost:5000/services`, {
+            fetch(`https://server-side-cyan-beta.vercel.app/services`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(serviceData),
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.insertedId) {
                         toast.success("Job successfully added")
                         navigate('/service')

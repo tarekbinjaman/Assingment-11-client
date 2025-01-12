@@ -20,7 +20,7 @@ const ServicesCard = ({ services, deleteService }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Send DELETE request to server
-                fetch(`http://localhost:5000/services/${_id}?email=${user.email}`, {
+                fetch(`https://server-side-cyan-beta.vercel.app/services/${_id}?email=${user.email}`, {
                     method: 'DELETE'
                 })
                 .then(res => res.json())
