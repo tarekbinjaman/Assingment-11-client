@@ -1,28 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <div>
             <footer className="footer bg-neutral text-neutral-content p-10">
   <nav>
-    <h6 className="footer-title">Services</h6>
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
+    <img src="https://img.freepik.com/free-vector/user-with-magnifying-glass_78370-7010.jpg?semt=ais_hybrid" className="w-[40px] rounded-full"  alt="" />
+    <h2 className='text-4xl font-bold'>JOb Matcher</h2>
   </nav>
   <nav>
-    <h6 className="footer-title">Company</h6>
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
   </nav>
   <nav>
-    <h6 className="footer-title">Legal</h6>
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
+    <h6 className="footer-title">====</h6>
+    <Link to={`https://assingment-11-bd947.web.app`}><a className="link link-hover">Home</a></Link>
+    <Link to={`https://assingment-11-bd947.web.app/service`}><a className="link link-hover">Services</a></Link>
   </nav>
 </footer>
         </div>

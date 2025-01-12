@@ -1,8 +1,9 @@
-# React + Vite
+# Assingment-11
+# Job Matcher
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Here is top 5 key features about my website.
+1. This site has count up functions like how many users are here, number of total review and number of services.
+2. It has carrousel, which is used by daisy UI.
+3. Search functionalities that will make you more easier to search you target keyword.
+4. The site is full responsive.
+5. It has a conditional navbar. If you are not login it will not show you your private routes.
