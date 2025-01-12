@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Result } from 'postcss';
 import { Authcontext } from '../../../context/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
 const Login = () => {
   const naviagte = useNavigate();
@@ -12,12 +13,21 @@ const Login = () => {
 
   const googleClick = () => {
     googleSignin()
-    .then((result) => {
-      const user = result.user;
-      setUser(user)
-      naviagte(location?.state ? location.state : "/")
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+  
+        // Sending user's email to jwt endpoint in backend
+        axios.post('http://localhost:5000/jwt', { email: user.email }, { withCredentials: true })
+          .then(res => console.log(res.data))
+          .catch(err => console.error("Error generating token:", err));
+  
+        naviagte(location?.state ? location.state : "/");
+      })
+      .catch(err => {
+        console.error("Google sign-in error:", err);
+      });
+  };
 
     const handleSubmit = e => {
       
@@ -29,6 +39,9 @@ const Login = () => {
         .then(result => {
           const user = result.user;
           setUser(user)
+          // sending users email to jwt in backend
+          axios.post('http://localhost:5000/jwt', {email : user.email}, {withCredentials: true})
+          .then(res => console.log(res.data))
           naviagte(location?.state ? location.state : "/")
           // console.log(result)
         })

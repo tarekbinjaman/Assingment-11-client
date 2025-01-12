@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Authcontext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2'; // Import Swal for alerts
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios';
 
 const MyReview = () => {
     const { user } = useContext(Authcontext);
@@ -12,10 +13,14 @@ const MyReview = () => {
     const [updatedRating, setUpdatedRating] = useState(0);
 
     useEffect(() => {
-        if (!user) return;
-        fetch(`http://localhost:5000/review?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setReviews(data));
+        // if (!user) return;
+        // fetch(`http://localhost:5000/review?email=${user.email}`)
+        //     .then(res => res.json())
+        //     .then(data => setReviews(data));
+        axios.get(`http://localhost:5000/review?email=${user.email}`,
+            {withCredentials: true})
+            .then(res => setReviews(res.data))
+
     }, [user]);
 
     const handleDelete = (_id) => {
