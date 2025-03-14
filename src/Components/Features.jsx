@@ -9,10 +9,12 @@ const Features = () => {
         .then(data => setServices(data))
     }, [])
     const sortServices = [...services].sort((a, b) => b.price - a.price );
-    const displayServicess = sortServices.slice(0, 6);
+    const displayServicess = sortServices.slice(0, 8);
     return (
-        <div className=''>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-24 lg:pt-0 p-10 place-items-center'>
+        <div>
+            <h1 className='text-2xl font-bold text-center mt-16 mb-6'><span className=' border-r-4 border-l-4 border-blue-400 px-3'>Our best jobs</span></h1>
+            <div className='flex justify-center'>
+            <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-x-4 gap-y-3 lg:p-24 lg:pt-0 p-10 place-items-center'>
                 {
                     displayServicess.map(service => (
                         <div key={service._id} className="flex justify-center"> {/* Align cards in the center */}
@@ -20,6 +22,7 @@ const Features = () => {
                         </div>
                     ))
                 }
+            </div>
             </div>
         </div>
     );

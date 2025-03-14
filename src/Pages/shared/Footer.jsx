@@ -2,23 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    return (
-        <div>
-            <footer className="footer bg-neutral text-neutral-content p-10">
-  <nav>
-    <img src="https://img.freepik.com/free-vector/user-with-magnifying-glass_78370-7010.jpg?semt=ais_hybrid" className="w-[40px] rounded-full"  alt="" />
-    <h2 className='text-4xl font-bold'>JOb Matcher</h2>
-  </nav>
-  <nav>
-  </nav>
-  <nav>
-    <h6 className="footer-title">====</h6>
-    <Link to={`https://assingment-11-bd947.web.app`}><a className="link link-hover">Home</a></Link>
-    <Link to={`https://assingment-11-bd947.web.app/service`}><a className="link link-hover">Services</a></Link>
-  </nav>
-</footer>
+  return (
+    <div>
+      <div className=" bg-slate-400 flex justify-center gap-4 text-white">
+        <div className='flex flex-row gap-7'>
+          <Link to={`https://assingment-11-bd947.web.app/addService`}><a className='link link-hover'>Add JOb</a></Link>
+          <Link to={`https://assingment-11-bd947.web.app/service`}><a className='link link-hover'>All Job</a></Link>
+          <Link to={`https://assingment-11-bd947.web.app/myReviews`}><a className='link link-hover'>My Reviews</a></Link>
         </div>
-    );
+        <div className='flex flex-row gap-7'>
+          <Link to={`https://assingment-11-bd947.web.app/`}><a className="link link-hover">Home</a></Link>
+          <Link to={`https://assingment-11-bd947.web.app/service`}><a className="link link-hover">Services</a></Link>
+          <Link to={`https://assingment-11-bd947.web.app/myServices`}><a className="link link-hover">My services</a></Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Footer;

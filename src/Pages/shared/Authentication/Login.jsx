@@ -18,9 +18,9 @@ const Login = () => {
         setUser(user);
   
         // Sending user's email to jwt endpoint in backend
-        axios.post('https://server-side-cyan-beta.vercel.app/jwt', { email: user.email }, { withCredentials: true })
-          // .then(res => console.log(res.data))
-          .catch(err => console.error("Error generating token:", err));
+        // axios.post('https://server-side-cyan-beta.vercel.app/jwt', { email: user.email }, { withCredentials: true })
+        //   // .then(res => console.log(res.data))
+        //   .catch(err => console.error("Error generating token:", err));
   
         naviagte(location?.state ? location.state : "/");
       })
@@ -40,8 +40,6 @@ const Login = () => {
           const user = result.user;
           setUser(user)
           // sending users email to jwt in backend
-          axios.post('https://server-side-cyan-beta.vercel.app/jwt', {email : user.email}, {withCredentials: true})
-          // .then(res => console.log(res.data))
           naviagte(location?.state ? location.state : "/")
           // console.log(result)
         })

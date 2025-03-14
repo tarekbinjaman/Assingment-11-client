@@ -12,10 +12,17 @@ const ServiceDetails = () => {
     const [rating, setRating] = useState(0);
    
     useEffect(() => {
-        fetch('https://server-side-cyan-beta.vercel.app/review')
+        fetch('https://server-side-cyan-beta.vercel.app/review', 
+            {
+                credentials: 'include'
+            }
+        )
         .then(res => res.json())
-        .then(serv => setReviews(serv))
-    }, [])
+        .then(serv => {
+            setReviews(serv)
+            console.log('reviews', reviews.length)
+        })
+    }, [reviews.length])
     
     const handleAddReview = () => {
         if (!user) {
@@ -43,7 +50,7 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(dat => {
-                // console.log(dat);
+                console.log(dat);
                 fetch('https://server-side-cyan-beta.vercel.app/review')
                 .then(res => res.json())
                 .then(serv => setReviews(serv))
@@ -55,7 +62,7 @@ const ServiceDetails = () => {
             <Helmet>Service Details</Helmet>
             <div className='flex flex-col'>
             <div>
-                <img src={serviceImage} className='w-[550px] h-[250px] object-cover' alt="" />
+                <img src={serviceImage} className='w-[550px] h-[250px] object-top' alt="" />
             <h2><strong> Title:</strong> {title}</h2>
             <p><strong>Description:</strong> {description}</p>
             <h3><strong>Price:</strong> {price}$</h3>
@@ -104,6 +111,7 @@ const ServiceDetails = () => {
                 ) : (
                     <p>No reviews yet. Be the first to leave a review!</p>
                 )}
+                {console.log(reviews.length)}
             </div>
         </div>
     );

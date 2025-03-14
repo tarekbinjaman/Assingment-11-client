@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.init';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import axios from 'axios';
 
 export const Authcontext = createContext();
 
@@ -10,23 +11,23 @@ const AuthProvider = ({children}) => {
     const [loading, setLoader] = useState(true);
 
     const userRegister = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password )
         setLoader(true);
+        return createUserWithEmailAndPassword(auth, email, password )
     }
 
     const userLogin = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
         setLoader(true);
+        return signInWithEmailAndPassword(auth, email, password)
     } 
 
     const updateUser = (user, updateData) => {
-        return updateProfile(user, updateData)
         setLoader(true);
+        return updateProfile(user, updateData)
     }
 
     const logOut = () => {
+        setLoader(true)
         return signOut(auth)
-        setLoader(false)
     }
 
     const googleSignin = () => {
@@ -50,7 +51,27 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unsbscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            setLoader(false)
+            console.log('State captured', currentUser?.email)
+            if (currentUser?.email) {
+                const user = { email: currentUser.email };
+                axios.post('https://server-side-cyan-beta.vercel.app/jwt', user, { withCredentials: true })
+                    .then(res =>{ 
+                        console.log('Login token:', res.data)
+                        setLoader(false)
+
+                    })
+                    .catch(err => console.error('Error generating token:', err));
+            } else {
+                // Clear the token when user logs out
+                axios.post('https://server-side-cyan-beta.vercel.app/logout', {}, { withCredentials: true })
+                    .then(res => {
+                        console.log('Logout token cleared:', res.data)
+                        setLoader(false)
+
+                    })
+                    .catch(err => console.error('Error clearing token:', err));
+            }
+
         })
         return () => {
             unsbscribe();

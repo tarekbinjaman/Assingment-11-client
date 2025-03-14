@@ -17,7 +17,7 @@ const MyReview = () => {
         // fetch(`https://server-side-cyan-beta.vercel.app/review?email=${user.email}`)
         //     .then(res => res.json())
         //     .then(data => setReviews(data));
-        axios.get(`https://server-side-cyan-beta.vercel.app/review?email=${user.email}`)
+        axios.get(`https://server-side-cyan-beta.vercel.app/review?email=${user.email}`, {withCredentials : true})
             .then(res => setReviews(res.data))
 
     }, [user]);

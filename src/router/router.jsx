@@ -5,11 +5,12 @@ import Login from "../Pages/shared/Authentication/Login";
 import Register from "../Pages/shared/Authentication/Register";
 import Service from "../Pages/shared/Service/Service";
 import AddService from "../Pages/AddService/AddService";
-import MyReviews from "../Pages/MyReviews/MyReviews";
+
 import Myservices from "../Pages/MyServices/Myservices";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import UpdateJob from "../Pages/AddService/UpdateJob";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import MyReview from "../Pages/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
           path: "myReviews",
           element: 
           <PrivateRoute>
-            <MyReviews></MyReviews>
+            <MyReview></MyReview>
           </PrivateRoute>
         },
         {
@@ -62,7 +63,10 @@ const router = createBrowserRouter([
         {
           path: "services/:id",
           element: <ServiceDetails></ServiceDetails>,
-          loader: ({params}) => fetch(`https://server-side-cyan-beta.vercel.app/services/${params.id}`)
+          loader: ({params}) => fetch(`https://server-side-cyan-beta.vercel.app/services/${params.id}`, {
+            method: 'GET',
+            credentials: 'include', // Include cookies in the request
+        })
         },
       ]
     },
